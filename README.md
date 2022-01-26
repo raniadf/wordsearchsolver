@@ -8,11 +8,11 @@ Repository berisi *Word Search Solver* ini dibuat untuk memenuhi **Tugas Kecil M
 ## Usage
 
 ### Dependencies
-- Java Virtual Environment
-- Java Development Kit
+- [Java Virtual Environment](https://www.java.com/en/download/)
+- [Java Development Kit](https://www.oracle.com/java/technologies/downloads/)
 
 ### Program Execution
-1. Buka folder Tucil1_13520142
+1. Buka folder 'wordsearchsolver'
 2. Pada terminal, ketik
    ```
    cd bin
