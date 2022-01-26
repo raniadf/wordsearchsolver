@@ -12,7 +12,7 @@ Repository berisi *Word Search Solver* ini dibuat untuk memenuhi **Tugas Kecil M
 - Java Development Kit
 
 ### Program Execution
-1. Buka folder Tucil1_13520142
+1. Buka folder 'wordsearchsolver'
 2. Pada terminal, ketik
    ```
    cd bin
