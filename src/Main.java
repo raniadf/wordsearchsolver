@@ -20,70 +20,73 @@ public class Main {
     input.close();
     
     // Membuka file
-    File file = new File(filename);
-    Scanner sc = new Scanner(file);
+    try {
+      File file = new File(filename);
+      Scanner sc = new Scanner(file);
 
+      // Start perhitungan waktu
+      long start = System.nanoTime();
 
-    // Start perhitungan waktu
-    long start = System.nanoTime();
+      // Membuat parameter penulisan puzzle
+      boolean thePuzzle = true;
 
-    // Membuat parameter penulisan puzzle
-    boolean thePuzzle = true;
+      // Inisialisasi arraylist untuk menaruh clue dan puzzle
+      ArrayList<String> clue = new ArrayList<String>();
+      ArrayList<char[]> puzzle = new ArrayList<char[]>();
 
-    // Inisialisasi arraylist untuk menaruh clue dan puzzle
-    ArrayList<String> clue = new ArrayList<String>();
-    ArrayList<char[]> puzzle = new ArrayList<char[]>();
+      // Penulisan puzzle
+      System.out.println();
+      System.out.println("[Puzzle] :");
 
-    // Penulisan puzzle
-    System.out.println();
-    System.out.println("[Puzzle] :");
+      // Membaca file
+      while (sc.hasNext()) {
+        // Membaca puzzle
+        if (thePuzzle) {
+          String fileContent = "";
+          fileContent = sc.nextLine();
+          System.out.println(fileContent);
+          if (fileContent == "") {
+            thePuzzle = false;
+          } else {
+            fileContent = fileContent.replaceAll("\\W", "");
+            char[] ch = fileContent.toCharArray();
+            puzzle.add(ch);
+          }
+        }
 
-    // Membaca file
-    while (sc.hasNext()) {
-      // Membaca puzzle
-      if (thePuzzle) {
-        String fileContent = "";
-        fileContent = sc.nextLine();
-        System.out.println(fileContent);
-        if (fileContent == "") {
-          thePuzzle = false;
-        } else {
-          fileContent = fileContent.replaceAll("\\W", "");
-          char[] ch = fileContent.toCharArray();
-          puzzle.add(ch);
+        // Membaca clue
+        if (!thePuzzle) {
+          String cluePart = "";
+          cluePart = sc.nextLine();
+          clue.add(cluePart);
         }
       }
 
-      // Membaca clue
-      if (!thePuzzle) {
-        String cluePart = "";
-        cluePart = sc.nextLine();
-        clue.add(cluePart);
-      }
+      // Penulisan clue
+      System.out.println("[Clue] : " + clue);
+      System.out.println();
+
+      // Mencari karakteristik word search
+      int row = puzzle.size();
+      char[] ch = puzzle.get(0);
+      int col = ch.length;
+      System.out.println("Ukuran Puzzle : " + row + " x " + col);
+      System.out.println("Jumlah Keyword : " + clue.size());
+      System.out.println();
+
+      // Menutup scanner
+      sc.close();
+
+      // Menyelesaikan word search
+      Solver.mainSolver(clue, puzzle);
+
+      // Menulis waktu
+      long end = System.nanoTime();
+      long elapsedTime = end - start;
+      double seconds = (double) elapsedTime / 1_000_000_000.0;
+      System.out.println("[Runtime] : " + seconds + " sec");
+    } catch (Exception e) {
+      System.out.println("Penulisan nama file salah atau file tidak dapat terbaca dengan baik.");
     }
-
-    // Penulisan clue
-    System.out.println("[Clue] : " + clue);
-    System.out.println();
-
-    // Mencari karakteristik word search
-    int row = puzzle.size();
-    char[] ch = puzzle.get(0);
-    int col = ch.length;
-    System.out.println("Ukuran Puzzle : " + row + " x " + col);
-    System.out.println("Jumlah Keyword : " + clue.size());
-    System.out.println();
-
-    // Menutup scanner
-    sc.close();
-
-    // Menyelesaikan word search
-    Solver.mainSolver(clue, puzzle);
-
-    // Menulis waktu
-    long end = System.nanoTime();
-    long elapsedTime = end - start;
-    double seconds = (double) elapsedTime / 1_000_000_000.0;
-    System.out.println("[Runtime] : " + seconds + " sec");
   }
 }
