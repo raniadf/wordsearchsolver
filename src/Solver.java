@@ -11,6 +11,7 @@ public class Solver {
      * @param clue   String
      * @param key    array of integer
      * @return boolean
+     * tes
      */
     public static boolean checkDown(ArrayList<char[]> puzzle, String clue, int[] key) {
         // Inisialisasi variabel-variabel utama
